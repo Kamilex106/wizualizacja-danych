@@ -1,0 +1,147 @@
+
+Cwiczenie 0.1. (5%) Napisz funkcje, który wyświetla na konsoli wartości listy bez powtórzeń każdą wartość w nowym wierszu.
+
+def wyswietl_unikatowe(lista):
+    unikatowe = set(lista)
+    for element in unikatowe:
+        print(element)
+
+lista = [1, 2, 2, 3, 4, 4, 4, 5, 6, 6, 7]
+wyswietl_unikatowe(lista)
+
+Cwiczenie 0.2. (5%) Zdeniuj zmienną typu string i wyświetl na konsoli co czwartą literę tego wyrazu w odwrotnym porządku. Uwaga: Pamiętaj o usuwaniu spacji oraz innych symbolów!
+def wyswietl_co_czwarta_odwrotnie(tekst):
+    tekst_bez_spacji = tekst.replace(" ", "").replace(",", "").replace(".", "").replace("!", "").replace("?", "")
+    odwrocony_tekst = tekst_bez_spacji[::-1]
+    for i in range(0, len(odwrocony_tekst), 4):
+        print(odwrocony_tekst[i])
+
+zmienna = "Witaj, świecie! Spróbujmy zrozumieć Pythona."
+wyswietl_co_czwarta_odwrotnie(zmienna)
+
+Cwiczenie 0.3. (20%)
+
+ˆ Napisz funkcję rekurencyjną, która oblicza n-t¡ liczb¡ z ci¡gu Fibonacciego. Wypisz wynik
+na konsoli przy pomocy print dla n = 10.
+
+ˆ Napisz funkcję nie rekurencyjną (przy pomoce pętli), która oblicza n-t¡ liczb¡ z ci¡gu Fibonacciego. Wypisz wynik na konsoli przy pomocy print dla n = 10.
+# Funkcja rekurencyjna
+def fibonacci_rekurencyjnie(n):
+    if n <= 0:
+        return "Podaj liczbę większą od 0"
+    elif n == 1 or n == 2:
+        return 1
+    else:
+        return fibonacci_rekurencyjnie(n - 1) + fibonacci_rekurencyjnie(n - 2)
+
+# Funkcja iteracyjna (z użyciem pętli)
+def fibonacci_iteracyjnie(n):
+    if n <= 0:
+        return "Podaj liczbę większą od 0"
+    elif n == 1 or n == 2:
+        return 1
+    else:
+        a, b = 1, 1
+        for _ in range(n - 2):
+            a, b = b, a + b
+        return b
+
+# Wypisanie wyników na konsoli dla n = 10
+n = 10
+print("Wynik dla funkcji rekurencyjnej: ", fibonacci_rekurencyjnie(n))
+print("Wynik dla funkcji iteracyjnej: ", fibonacci_iteracyjnie(n))
+
+
+
+Cwiczenie 0.4. (10%) Napisz funkcj¦ która zwraca iloczyn n-tych potęg podanych liczb (n -parametr funkcji), liczby muszą być podane jako func(1,2,3,4,5, n=2)
+def iloczyn_poteg(*liczby, n=2):
+    wynik = 1
+    for liczba in liczby:
+        wynik *= liczba ** n
+    return wynik
+
+# Przykład użycia funkcji
+wynik = iloczyn_poteg(1, 2, 3, 4, 5, n=2)
+print(wynik)
+
+
+Cwiczenie 0.5. (10%) Przy pomocy List Comprehensions wybierz z listy
+['apple', 'banana', 'pomergranate', 'plum', 'orange', 'melon', 'cherry', 'watermelon']
+słowa, w nazwie których jest litera 'u' albo 'o' i utwórz listy ich długości
+fruits = ['apple', 'banana', 'pomegranate', 'plum', 'orange', 'melon', 'cherry', 'watermelon']
+selected_fruits_lengths = [len(fruit) for fruit in fruits if 'u' in fruit or 'o' in fruit]
+
+print(selected_fruits_lengths)
+
+
+‌Cwiczenie 0.6. (10%) Napisz funkcj¦, która zwraca wartość symbolu Newtona dla podanych n i k.
+
+def newton_symbol(n, k):
+    def factorial(number):
+        if number == 0 or number == 1:
+            return 1
+        else:
+            return number * factorial(number - 1)
+
+    if n < k or n < 0 or k < 0:
+        return "Podano niepoprawne wartości n i k"
+    else:
+        return factorial(n) // (factorial(k) * factorial(n - k))
+
+# Przykład użycia funkcji
+n = 5
+k = 2
+result = newton_symbol(n, k)
+print(f"Wartość symbolu Newtona dla n={n} i k={k} wynosi: {result}")
+
+
+Cwiczenie 0.7. (40%) Stwórz klasy wielomianów Polynomial, w którym wielomian będzie przechowywać się w postaci listy. Dodaj metody +, − oraz możliwość wyświetlania na konsoli przy pomocy print w postaci prz. 1x^2−2x^1 + 2 (dodatkowo można dodać: degree (),//, możliwość indeksacji, ...).
+class Polynomial:
+    def __init__(self, coeffs):
+        self.coeffs = coeffs
+
+    def degree(self):
+        return len(self.coeffs) - 1
+
+    def __add__(self, other):
+        result_coeffs = []
+        min_degree = min(self.degree(), other.degree())
+        for i in range(min_degree + 1):
+            result_coeffs.append(self.coeffs[i] + other.coeffs[i])
+        result_coeffs.extend(self.coeffs[min_degree + 1:])
+        result_coeffs.extend(other.coeffs[min_degree + 1:])
+        return Polynomial(result_coeffs)
+
+    def __sub__(self, other):
+        result_coeffs = []
+        min_degree = min(self.degree(), other.degree())
+        for i in range(min_degree + 1):
+            result_coeffs.append(self.coeffs[i] - other.coeffs[i])
+        result_coeffs.extend(self.coeffs[min_degree + 1:])
+        for c in other.coeffs[min_degree + 1:]:
+            result_coeffs.append(-c)
+        return Polynomial(result_coeffs)
+
+    def __getitem__(self, index):
+        if index > self.degree():
+            return 0
+        return self.coeffs[index]
+
+    def __str__(self):
+        terms = []
+        for i, coeff in enumerate(self.coeffs[::-1]):
+            if coeff == 0:
+                continue
+            term = f'{coeff:+}' if i != 0 else f'{coeff}'
+            if i > 0:
+                term += f'x^{len(self.coeffs) - i}'
+            terms.append(term)
+        return ' '.join(terms)
+
+# Przykład użycia
+p1 = Polynomial([2, -2, 1])
+p2 = Polynomial([1, 2, 3])
+print("p1:", p1)
+print("p2:", p2)
+print("p1 + p2:", p1 + p2)
+print("p1 - p2:", p1 - p2)
