@@ -1,0 +1,24 @@
+def konwerter_temperatury(temp, typ):
+    if typ.upper() == 'C':
+        fahrenheit = (temp * 9/5) + 32
+        kelvin = temp + 273.15
+        print(f"Temperatura w stopniach Celsjusza: {temp}°C")
+        print(f"Temperatura w stopniach Fahrenheita: {fahrenheit}°F")
+        print(f"Temperatura w Kelwinach: {kelvin}K")
+    elif typ.upper() == 'F':
+        celsius = (temp - 32) * 5/9
+        kelvin = (temp - 32) * 5/9 + 273.15
+        print(f"Temperatura w stopniach Celsjusza: {celsius}°C")
+        print(f"Temperatura w stopniach Fahrenheita: {temp}°F")
+        print(f"Temperatura w Kelwinach: {kelvin}K")
+    elif typ.upper() == 'K':
+        celsius = temp - 273.15
+        fahrenheit = (temp - 273.15) * 9/5 + 32
+        print(f"Temperatura w stopniach Celsjusza: {celsius}°C")
+        print(f"Temperatura w stopniach Fahrenheita: {fahrenheit}°F")
+        print(f"Temperatura w Kelwinach: {temp}K")
+    else:
+        print("Niepoprawny rodzaj temperatury. Podaj 'C', 'F', lub 'K'.")
+
+# Przykład użycia
+konwerter_temperatury(25, 'C')
