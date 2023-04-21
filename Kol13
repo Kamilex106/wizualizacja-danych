@@ -55,3 +55,7 @@ print(Frac(2, 6) * Frac(1, 5))
 print(Frac(2, 6) == Frac(1, 3))
 
 
+
+
+4 jak 3 w 3
+
