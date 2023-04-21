@@ -1,0 +1,57 @@
+def liczby_na_tekst(ciag):
+    cyfry_tekst = {
+        "0": "zero",
+        "1": "jeden",
+        "2": "dwa",
+        "3": "trzy",
+        "4": "cztery",
+        "5": "pięć",
+        "6": "sześć",
+        "7": "siedem",
+        "8": "osiem",
+        "9": "dziewięć"
+    }
+
+    wynik = []
+    for znak in ciag:
+        if znak in cyfry_tekst:
+            wynik.append(cyfry_tekst[znak])
+
+    return " ".join(wynik)
+
+print(liczby_na_tekst('45j2'))
+
+
+class Frac:
+    def __init__(self, licznik, mianownik):
+        self.licznik = licznik
+        self.mianownik = mianownik
+        self._skroc()
+
+    def _nwd(self, a, b):
+        while b:
+            a, b = b, a % b
+        return a
+
+    def _skroc(self):
+        nwd = self._nwd(self.licznik, self.mianownik)
+        self.licznik //= nwd
+        self.mianownik //= nwd
+
+    def __mul__(self, other):
+        return Frac(self.licznik * other.licznik, self.mianownik * other.mianownik)
+
+    def __pow__(self, potega):
+        return Frac(self.licznik ** potega, self.mianownik ** potega)
+
+    def __eq__(self, other):
+        return self.licznik == other.licznik and self.mianownik == other.mianownik
+
+    def __str__(self):
+        return f"{self.licznik}/{self.mianownik}"
+
+# Przykładowe użycie
+print(Frac(2, 6) * Frac(1, 5))
+print(Frac(2, 6) == Frac(1, 3))
+
+
