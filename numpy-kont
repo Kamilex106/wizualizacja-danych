@@ -1,1 +1,92 @@
 
+import numpy as np
+
+# Dane wejściowe
+dane = np.array([
+    ['Anna', 'K', 25, 168, 55, 0],
+    ['Tomasz', 'M', 32, 180, 75, 1],
+    ['Kasia', 'K', 29, 162, 58, 1],
+    ['Piotr', 'M', 24, 178, 64, 0],
+    ['Agnieszka', 'K', 23, 170, 68, 0],
+    ['Adam', 'M', 27, 175, 62, 0],
+], dtype=object)
+
+# Wypisz na konsoli imiona posortowane alfabetycznie
+imiona_posortowane = np.sort(dane[:, 0])
+print(imiona_posortowane)
+
+# Stwórz tablicę przechowującą imiona osób noszących okulary
+nosza_okulary = dane[dane[:, 5] == 1]
+imiona_nosza_okulary = nosza_okulary[:, 0]
+print(imiona_nosza_okulary)
+
+# Stwórz tablicę zawierającą imiona kobiet w wieku z przedziału lat [20, 30]
+kobiety_20_30 = dane[(dane[:, 1] == 'K') & (dane[:, 2] >= 20) & (dane[:, 2] <= 30)]
+imiona_kobiety_20_30 = kobiety_20_30[:, 0]
+print(imiona_kobiety_20_30)
+
+# Stwórz tablicę zawierającą imiona osób o wadze z przedziału [60, 80], wzroście [160, 180] nienoszących okularów
+osoby_bez_okularow_60_80_160_180 = dane[(dane[:, 3] >= 60) & (dane[:, 3] <= 80) & (dane[:, 4] >= 160) & (dane[:, 4] <= 180) & (dane[:, 5] == 0)]
+imiona_osoby_bez_okularow_60_80_160_180 = osoby_bez_okularow_60_80_160_180[:, 0]
+print(imiona_osoby_bez_okularow_60_80_160_180)
+
+# Policz BMI dla wszystkich osób i wynik zapisz w tablicy
+waga = dane[:, 4].astype(float)
+wzrost = dane[:, 3].astype(float)
+bmi = waga / (wzrost / 100) ** 2
+print(bmi)
+
+# Policz średni wiek i wyświetl na konsoli imię osoby najbliżej średniej
+wiek = dane[:, 2].astype(int)
+sredni_wiek = np.mean(wiek)
+najblizsza_osoba = dane[np.argmin(np.abs(wiek - sredni_wiek)), 0]
+print(najblizsza_osoba)
+
+
+
+////////////////////////////////////////////////////////////////
+import numpy as np
+
+# Dane wejściowe
+wzrost = np.array([180, 160, 175, 190, 165, 155, 185, 172, 169, 178])
+rozmiar_buta = np.array([11, 8, 10, 13, 9, 7, 12, 10, 9, 11])
+
+# Jaki jest średnie rozmiar buta?
+sredni_rozmiar_buta = np.mean(rozmiar_buta)
+print("Średni rozmiar buta:", sredni_rozmiar_buta)
+
+# Jaki jest maksymalnie wymieniony rozmiar buta?
+maks_rozmiar_buta = np.max(rozmiar_buta)
+print("Maksymalny rozmiar buta:", maks_rozmiar_buta)
+
+# Jaki jest średnie wzrost osób z maksymalnym wymienionym rozmiarem buta?
+osoby_max_rozmiar_buta = wzrost[rozmiar_buta == maks_rozmiar_buta]
+sredni_wzrost_max_rozmiar_buta = np.mean(osoby_max_rozmiar_buta)
+print("Średni wzrost osób z maksymalnym rozmiarem buta:", sredni_wzrost_max_rozmiar_buta)
+
+# Jaki jest najmniejszy wzrost osób z maksymalnym wymienionym rozmiarem buta?
+min_wzrost_max_rozmiar_buta = np.min(osoby_max_rozmiar_buta)
+print("Najmniejszy wzrost osób z maksymalnym rozmiarem buta:", min_wzrost_max_rozmiar_buta)
+
+# Jaki jest średnie rozmiar buty u osób każdego wzrostu?
+unikalne_wzrosty, indeksy, licznosci = np.unique(wzrost, return_inverse=True, return_counts=True)
+srednie_rozmiary_buta = np.bincount(indeksy, weights=rozmiar_buta) / licznosci
+print("Średnie rozmiary buty u osób każdego wzrostu:", srednie_rozmiary_buta)
+
+# Jakie jest średnie wzrost tych osób?
+sredni_wzrost = np.mean(wzrost)
+print("Średni wzrost:", sredni_wzrost)
+
+# Jaki jest najmniejszy i najwyższy wzrost u osób z rozmiarem buty 10?
+osoby_rozmiar_buta_10 = wzrost[rozmiar_buta == 10]
+min_wzrost_rozmiar_buta_10 = np.min(osoby_rozmiar_buta_10)
+max_wzrost_rozmiar_buta_10 = np.max(osoby_rozmiar_buta_10)
+print("Najmniejszy wzrost u osób z rozmiarem buta 10:", min_wzrost_rozmiar_buta_10)
+print("Najwyższy wzrost u osób z rozmiarem buta 10:", max_wzrost_rozmiar_buta_10)
+
+# Stwórz tablicę zawierającą europejski rozmiar butów dla tych osób.
+def us_to_eu(rozmiar_us):
+return rozmiar_us * 1.5 + 31.5
+
+rozmiar_buta_eu = us_to_eu(rozmiar_buta)
+print("Europejski rozmiar butów dla tych osób:", rozmiar_buta_eu)
