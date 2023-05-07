@@ -1,0 +1,38 @@
+Pliki csv z README
+
+
+przygotuj 5 plików w formacie
+csv dostępnych na darmowych repozytoriach danych. Napisz do nich plik README
+i umieść informacje o źródle danych w postaci:
+Nazwa pliku: sample1.csv
+Opis: [krótki opis czego dotyczy dane zjawisko]
+Zródło: [adres strony www, nazwa serwisu]
+Licencja: [rodzaj licencji, o ile dotyczy]
+
+
+Plik README
+
+Nazwa pliku: world_population.csv
+Opis: Dane dotyczące populacji świata, wraz z podziałem na kraje i rok.
+Źródło: https://datahub.io/core/population
+Licencja: Public Domain (https://creativecommons.org/publicdomain/zero/1.0/)
+
+Nazwa pliku: covid19_cases.csv
+Opis: Dane dotyczące liczby przypadków COVID-19 na świecie, z podziałem na kraje i daty.
+Źródło: https://github.com/CSSEGISandData/COVID-19
+Licencja: Creative Commons Attribution 4.0 International (CC BY 4.0) (https://creativecommons.org/licenses/by/4.0/)
+
+Nazwa pliku: global_temperature.csv
+Opis: Dane dotyczące globalnych zmian temperatury powierzchni Ziemi od 1880 do 2021 roku.
+Źródło: https://datahub.io/core/global-temp
+Licencja: Public Domain (https://creativecommons.org/publicdomain/zero/1.0/)
+
+Nazwa pliku: olympic_medals.csv
+Opis: Dane dotyczące liczby zdobytych medali olimpijskich przez różne kraje w latach 1896-2016.
+Źródło: https://www.kaggle.com/the-guardian/olympic-games
+Licencja: Open Database License (ODbL) (https://opendatacommons.org/licenses/odbl/1.0/)
+
+Nazwa pliku: air_quality.csv
+Opis: Dane dotyczące jakości powietrza dla wybranych miast na świecie, z podziałem na daty i zanieczyszczenia.
+Źródło: https://aqicn.org/data-platform/covid19/
+Licencja: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) (https://creativecommons.org/licenses/by-sa/4.0/)
